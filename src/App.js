@@ -2,22 +2,19 @@ import React from "react";
 
 class App extends React.Component {
   state = {
-    number: 0,
+    isLoading: true,
   };
-  add = () => {
-    this.setState({ number: this.state.number + 1 });
-    console.log("+");
-  };
-  subtract = () => {
-    console.log("-");
-    this.setState({ number: this.state.number - 1 });
+  componentDidMount() {
+    setTimeout(this.counter, 5000);
+  }
+  counter = () => {
+    this.setState({ isLoading: false });
   };
   render() {
+    const { isLoading } = this.state;
     return (
       <div>
-        <button onClick={this.add}>add</button>
-        <button onClick={this.subtract}>minus</button>
-        <h1>HELLO the number is {this.state.number}</h1>;
+        <h1>{isLoading ? "Loading.." : "LOADED:D"}</h1>
       </div>
     );
   }
