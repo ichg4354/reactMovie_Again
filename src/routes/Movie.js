@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import LoadMovie from "./components/LoadMovie.js";
+import LoadMovie from "../components/LoadMovie.js";
 
 class Movie extends React.Component {
   state = {
@@ -31,6 +31,7 @@ class Movie extends React.Component {
         image={movie.medium_cover_image}
         summary={movie.summary}
         genres={movie.genres}
+        id={movie.id}
       />
     ));
   };
