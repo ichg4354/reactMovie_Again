@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
-import LoadMovie from "./Movie.js";
+import LoadMovie from "./components/LoadMovie.js";
 
-class App extends React.Component {
+class Movie extends React.Component {
   state = {
     isLoading: true,
     movies: [],
@@ -24,21 +24,24 @@ class App extends React.Component {
   saveMovie = (movies) => {
     this.setState({ movies: movies });
   };
+  sendMovie = () => {
+    return this.state.movies.map((movie) => (
+      <LoadMovie
+        title={movie.title}
+        image={movie.medium_cover_image}
+        summary={movie.summary}
+        genres={movie.genres}
+      />
+    ));
+  };
   render() {
-    const { isLoading, movies } = this.state;
-    console.log(movies);
+    const { isLoading } = this.state;
     return (
       <div>
-        <h1>
-          {isLoading ? (
-            "is Loading.."
-          ) : (
-            <LoadMovie value={movies.map((each) => each.title)} />
-          )}
-        </h1>
+        <h1>{isLoading ? "Loading..." : this.sendMovie()}</h1>
       </div>
     );
   }
 }
 
-export default App;
+export default Movie;
